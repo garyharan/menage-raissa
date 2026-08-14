@@ -1,0 +1,1394 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entretien Ménager RaissaFL – Montréal</title>
+    <meta
+      name="description"
+      content="Services d'entretien ménager résidentiel et commercial de qualité dans le grand Montréal."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    /></noscript>
+    <link rel="icon" href="img/logo.jpg" type="image/jpeg" />
+    <style>
+      /* ── Reset & Base ─────────────────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-size: 21px;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        color: #1d1e20;
+        background: #fff;
+        line-height: 1.6;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ── Design tokens ────────────────────────────────────────────────── */
+      :root {
+        --purple-dark: #2f1c6a;
+        --purple: #673de6;
+        --purple-mid: #5025d1;
+        --purple-light: #ebe4ff;
+        --purple-pale: #d5dfff;
+        --accent: #8c85ff;
+        --gray-dark: #36344d;
+        --gray-border: #dadce0;
+        --gray-light: #f2f3f6;
+        --white: #ffffff;
+        --radius-sm: 8px;
+        --radius-md: 16px;
+        --radius-lg: 24px;
+        --shadow-sm: 0 2px 8px rgba(47, 28, 106, 0.1);
+        --shadow-md: 0 8px 32px rgba(47, 28, 106, 0.14);
+        --shadow-lg: 0 16px 56px rgba(47, 28, 106, 0.18);
+        --transition: 0.25s ease;
+      }
+
+      /* ── Utilities ────────────────────────────────────────────────────── */
+      .container {
+        width: 100%;
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .section {
+        padding: 96px 0;
+      }
+      .section--alt {
+        background: var(--gray-light);
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--purple-light);
+        color: var(--purple-mid);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 100px;
+      }
+      .section-heading {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 800;
+        line-height: 1.2;
+        color: var(--purple-dark);
+        margin: 12px 0 16px;
+      }
+      .section-sub {
+        font-size: 1.05rem;
+        color: var(--gray-dark);
+        max-width: 540px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+      }
+      .btn-primary {
+        background: var(--purple);
+        color: var(--white);
+        box-shadow: 0 4px 20px rgba(103, 61, 230, 0.35);
+      }
+      .btn-primary:hover {
+        background: var(--purple-mid);
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--white);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+      }
+      .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      /* ── Nav ──────────────────────────────────────────────────────────── */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: clamp(16px, 2vw, 32px);
+        height: 68px;
+      }
+      .nav__logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+      .nav__logo img {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .nav__logo-text {
+        font-weight: 800;
+        font-size: 1rem;
+        color: var(--purple-dark);
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+      .nav__logo-text span {
+        color: var(--purple);
+      }
+      .nav__links {
+        display: flex;
+        gap: clamp(14px, 2.4vw, 32px);
+        list-style: none;
+      }
+      .nav__links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--gray-dark);
+        white-space: nowrap;
+        transition: color var(--transition);
+      }
+      .nav__links a:hover {
+        color: var(--purple);
+      }
+      .nav__cta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .nav__cta .btn {
+        white-space: nowrap;
+      }
+      .nav__phone {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--purple-mid);
+        white-space: nowrap;
+      }
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+        background: none;
+        border: none;
+        flex-shrink: 0;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--purple-dark);
+        border-radius: 2px;
+        transition: var(--transition);
+      }
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        background: var(--white);
+        border-top: 1px solid var(--gray-border);
+        padding: 16px 24px 24px;
+        gap: 16px;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        font-weight: 500;
+        color: var(--gray-dark);
+        padding: 8px 0;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+
+      /* ── Hero ─────────────────────────────────────────────────────────── */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--purple-dark) 0%,
+          #1f0f5c 50%,
+          #0d0630 100%
+        );
+        color: var(--white);
+        padding: 100px 0 80px;
+        overflow: hidden;
+        position: relative;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238c85ff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+      .hero__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+        position: relative;
+      }
+      .hero__badge {
+        background: rgba(140, 133, 255, 0.18);
+        color: var(--accent);
+      }
+      .hero__title {
+        font-size: clamp(2rem, 5vw, 3.25rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin: 16px 0 20px;
+      }
+      .hero__title em {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .hero__sub {
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 36px;
+        max-width: 480px;
+      }
+      .hero__actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .hero__trust {
+        display: flex;
+        gap: 0;
+        margin-top: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        width: fit-content;
+      }
+      .hero__trust-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 32px;
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .hero__trust-item:last-child {
+        border-right: none;
+      }
+      .hero__trust-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+      .hero__trust-text {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .hero__trust-text strong {
+        display: block;
+        color: var(--white);
+        font-size: 0.95rem;
+      }
+      .hero__image-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 12px;
+      }
+      .hero__image-grid img {
+        border-radius: var(--radius-md);
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        box-shadow: var(--shadow-lg);
+      }
+      .hero__image-grid img:first-child {
+        grid-column: 1 / -1;
+        height: 240px;
+      }
+
+      /* ── Services ─────────────────────────────────────────────────────── */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .service-card {
+        background: var(--white);
+        border: 1px solid var(--gray-border);
+        border-radius: var(--radius-md);
+        padding: 32px 28px;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--purple);
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform var(--transition);
+      }
+      .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .service-card:hover::before {
+        transform: scaleY(1);
+      }
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: var(--radius-sm);
+        background: var(--purple-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+      .service-card h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--purple-dark);
+        margin-bottom: 8px;
+      }
+      .service-card p {
+        font-size: 0.9rem;
+        color: var(--gray-dark);
+      }
+
+      /* ── About ────────────────────────────────────────────────────────── */
+      .about__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .about__image {
+        position: relative;
+      }
+      .about__image img {
+        width: 100%;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        object-fit: cover;
+        height: 480px;
+      }
+      .about__bubble {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        background: var(--purple);
+        color: var(--white);
+        border-radius: var(--radius-md);
+        padding: 20px 24px;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+      }
+      .about__bubble strong {
+        font-size: 2rem;
+        font-weight: 800;
+        display: block;
+      }
+      .about__bubble span {
+        font-size: 0.8rem;
+        opacity: 0.85;
+      }
+      .about__list {
+        list-style: none;
+        margin: 28px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .about__list li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .about__list-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--purple-light);
+        color: var(--purple);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .about__list p {
+        font-size: 0.95rem;
+        color: var(--gray-dark);
+      }
+
+      /* ── Before/After ─────────────────────────────────────────────────── */
+      .ba__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 48px;
+      }
+      .ba__card {
+        position: relative;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+      }
+      .ba__card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+      .ba__label {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: var(--purple);
+        color: var(--white);
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 100px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      /* ── Testimonials ─────────────────────────────────────────────────── */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .testimonial-card {
+        background: var(--white);
+        border: 1px solid var(--gray-border);
+        border-radius: var(--radius-md);
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .stars {
+        color: #ffcd35;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+      }
+      .testimonial-card p {
+        font-size: 0.95rem;
+        color: var(--gray-dark);
+        flex: 1;
+        font-style: italic;
+      }
+      .testimonial-card p::before {
+        content: "\201C";
+      }
+      .testimonial-card p::after {
+        content: "\201D";
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .testimonial-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--purple-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: var(--purple);
+      }
+      .testimonial-author strong {
+        font-size: 0.95rem;
+        color: var(--purple-dark);
+      }
+      .testimonial-author span {
+        font-size: 0.8rem;
+        color: #767676;
+      }
+
+      /* ── Contact ──────────────────────────────────────────────────────── */
+      .contact {
+        background: linear-gradient(
+          135deg,
+          var(--purple-dark) 0%,
+          #1f0f5c 100%
+        );
+        color: var(--white);
+        padding: 96px 0;
+      }
+      .contact__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .contact h2 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 800;
+        margin: 12px 0 16px;
+      }
+      .contact p {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1rem;
+      }
+      .contact-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 36px;
+      }
+      .contact-method {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .contact-method-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-sm);
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+      .contact-method-text strong {
+        display: block;
+        color: var(--white);
+        font-size: 0.9rem;
+      }
+      .contact-method-text a,
+      .contact-method-text span {
+        color: var(--accent);
+        font-size: 0.9rem;
+      }
+      .contact-form {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-lg);
+        padding: 40px;
+        backdrop-filter: blur(8px);
+      }
+      .contact-form h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      .form-group {
+        margin-bottom: 18px;
+      }
+      .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-sm);
+        color: var(--white);
+        font-size: 0.95rem;
+        font-family: inherit;
+        transition: border-color var(--transition);
+        outline: none;
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent);
+      }
+      .form-group select option {
+        background: var(--purple-dark);
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .btn-submit {
+        width: 100%;
+        padding: 14px;
+        background: var(--white);
+        color: var(--purple-mid);
+        border: none;
+        border-radius: var(--radius-sm);
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .btn-submit:hover {
+        background: var(--purple-light);
+      }
+
+      /* ── Footer ───────────────────────────────────────────────────────── */
+      .footer {
+        background: #0d0630;
+        color: rgba(255, 255, 255, 0.6);
+        padding: 48px 0 32px;
+      }
+      .footer__inner {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 48px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .footer__brand {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .footer__brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .footer__brand-logo img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .footer__brand-name {
+        font-weight: 800;
+        color: var(--white);
+        font-size: 0.95rem;
+        line-height: 1.2;
+      }
+      .footer__brand p {
+        font-size: 0.875rem;
+      }
+      .footer__socials {
+        display: flex;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .footer__social {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        transition: background var(--transition);
+      }
+      .footer__social:hover {
+        background: var(--purple);
+      }
+      .footer__col h4 {
+        color: var(--white);
+        font-size: 0.875rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .footer__col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer__col ul a {
+        font-size: 0.875rem;
+        transition: color var(--transition);
+      }
+      .footer__col ul a:hover {
+        color: var(--accent);
+      }
+      .footer__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 24px;
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .footer__bottom a {
+        color: var(--accent);
+      }
+
+      /* ── Responsive ───────────────────────────────────────────────────── */
+      /* Tablet / small laptop: drop the phone from the nav (it stays in the
+         mobile menu and the contact section) and tighten the CTA so the bar
+         fits on one line instead of wrapping. */
+      @media (max-width: 1160px) {
+        .nav__phone {
+          display: none;
+        }
+        .nav__cta .btn {
+          padding: 12px 20px;
+          font-size: 0.9rem;
+        }
+      }
+
+      /* The full nav stops fitting on one line below ~980px, so switch to the
+         hamburger there rather than at the 900px layout breakpoint. */
+      @media (max-width: 980px) {
+        .nav__links,
+        .nav__cta .btn {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero__inner,
+        .about__inner,
+        .contact__inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .hero__image-grid {
+          display: none;
+        }
+        .ba__inner {
+          grid-template-columns: 1fr;
+        }
+        .about__bubble {
+          position: static;
+          margin-top: 16px;
+          display: inline-block;
+        }
+        .about__image img {
+          height: 320px;
+        }
+        .footer__inner {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        /* Narrow phones: let the brand wrap again so it can't push the
+           hamburger off-screen. */
+        .nav__logo-text {
+          white-space: normal;
+          font-size: 0.95rem;
+        }
+        .section {
+          padding: 64px 0;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .footer__inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .footer__bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero {
+          padding: 64px 0 56px;
+        }
+        .contact__inner {
+          gap: 48px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Navigation ──────────────────────────────────────────────────────── -->
+    <header>
+      <nav class="nav">
+        <div class="container">
+          <div class="nav__inner">
+            <a class="nav__logo" href="#accueil">
+              <img
+                src="img/logo.jpg"
+                alt="RaissaFL Logo"
+                width="44"
+                height="44"
+              />
+              <div class="nav__logo-text">
+                Entretien Ménager<br /><span>RaissaFL</span>
+              </div>
+            </a>
+            <ul class="nav__links">
+              <li><a href="#services">Services</a></li>
+              <li><a href="#apropos">À propos</a></li>
+              <li><a href="#temoignages">Témoignages</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav__cta">
+              <a class="nav__phone" href="tel:+14383795528">438 379-5528</a>
+              <a class="btn btn-primary" href="#contact">Demander un devis</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+          <a href="#services">Services</a>
+          <a href="#apropos">À propos</a>
+          <a href="#temoignages">Témoignages</a>
+          <a href="#contact">Contact</a>
+          <a href="tel:+14383795528" style="color: #673de6; font-weight: 600"
+            ><span aria-hidden="true">📞</span> 438 379-5528</a
+          >
+          <a href="tel:+14388806717" style="color: #673de6; font-weight: 600"
+            ><span aria-hidden="true">📞</span> 438 880-6717</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main>
+    <!-- ── Hero ────────────────────────────────────────────────────────────── -->
+    <section class="hero" id="accueil">
+      <div class="container">
+        <div class="hero__inner">
+          <div>
+            <h1 class="hero__title">
+              Un chez-vous <em>impeccable</em>,<br />à chaque visite.
+            </h1>
+            <p class="hero__sub">
+              Services d'entretien ménager résidentiel et commercial de qualité
+              dans le grand Montréal — Île, Rive-Sud et Rive-Nord.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn-primary" href="#contact"
+                >Obtenir un devis gratuit</a
+              >
+              <a class="btn btn-outline" href="tel:+14383795528"
+                ><span aria-hidden="true">📞</span> Nous appeler</a
+              >
+            </div>
+          </div>
+
+          <div class="hero__image-grid">
+            <img
+              src="img/salon.jpg"
+              alt="Salon propre et bien rangé"
+              width="392"
+              height="299"
+              fetchpriority="high"
+            />
+            <img
+              src="img/team.jpg"
+              alt="Notre équipe au travail"
+              width="232"
+              height="245"
+            />
+            <img
+              src="img/commercial.jpg"
+              alt="Espace commercial propre"
+              width="400"
+              height="304"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Services ────────────────────────────────────────────────────────── -->
+    <section class="section" id="services">
+      <div class="container">
+        <h2 class="section-heading">Ce que nous offrons</h2>
+        <p class="section-sub">
+          De l'entretien régulier au grand ménage de fond en comble, nous
+          adaptons nos services à vos besoins.
+        </p>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">🧹</div>
+            <h3>Grand ménage</h3>
+            <p>
+              Nettoyage complet et en profondeur de votre espace pour un
+              résultat impeccable de fond en comble.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">📅</div>
+            <h3>Entretien régulier</h3>
+            <p>
+              Service hebdomadaire, bimensuel ou selon votre fréquence préférée
+              pour garder votre espace toujours propre.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">📦</div>
+            <h3>Pré / post-déménagement</h3>
+            <p>
+              Nettoyage complet avant ou après votre déménagement pour repartir
+              sur de bonnes bases.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">🏢</div>
+            <h3>Espaces commerciaux</h3>
+            <p>
+              Entretien de bureaux, commerces et espaces professionnels avec
+              discrétion et efficacité.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">🔨</div>
+            <h3>Post-rénovation</h3>
+            <p>
+              Nettoyage après travaux de construction ou rénovation — poussière,
+              débris, finition incluse.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon" aria-hidden="true">✨</div>
+            <h3>Nettoyage ponctuel</h3>
+            <p>
+              Besoin d'un coup de propre pour une occasion spéciale ? Nous
+              intervenons à la demande.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── About ────────────────────────────────────────────────────────────── -->
+    <section class="section section--alt" id="apropos">
+      <div class="container">
+        <div class="about__inner">
+          <div class="about__image">
+            <img
+              src="img/team.jpg"
+              alt="L'équipe RaissaFL"
+              width="232"
+              height="245"
+              loading="lazy"
+            />
+            <div class="about__bubble">
+              <strong>100%</strong>
+              <span>Satisfaction garantie</span>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="section-heading">
+              Votre partenaire ménager de confiance
+            </h2>
+            <p class="section-sub">
+              Entretien Ménager RaissaFL est une entreprise montréalaise
+              spécialisée dans le nettoyage résidentiel et commercial. Nous
+              desservons l'Île de Montréal, la Rive-Sud et la Rive-Nord.
+            </p>
+
+            <ul class="about__list">
+              <li>
+                <div class="about__list-icon" aria-hidden="true">✓</div>
+                <p>
+                  <strong>Équipe professionnelle et fiable</strong> — personnel
+                  formé, ponctuel et respectueux de votre espace.
+                </p>
+              </li>
+              <li>
+                <div class="about__list-icon" aria-hidden="true">✓</div>
+                <p>
+                  <strong>Produits de qualité</strong> — nous utilisons des
+                  produits efficaces et respectueux de l'environnement.
+                </p>
+              </li>
+              <li>
+                <div class="about__list-icon" aria-hidden="true">✓</div>
+                <p>
+                  <strong>Flexibilité totale</strong> — horaires et fréquences
+                  adaptés à votre mode de vie.
+                </p>
+              </li>
+              <li>
+                <div class="about__list-icon" aria-hidden="true">✓</div>
+                <p>
+                  <strong>Prix transparents</strong> — devis gratuit sans
+                  engagement, aucune surprise sur la facture.
+                </p>
+              </li>
+            </ul>
+
+            <a class="btn btn-primary" href="#contact">Prendre rendez-vous</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Before / After ──────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-heading">Avant &amp; après</h2>
+        <p class="section-sub">
+          Voyez la différence que fait notre équipe à chaque intervention.
+        </p>
+
+        <div class="ba__inner">
+          <div class="ba__card">
+            <img
+              src="img/before-after.png"
+              alt="Avant et après nettoyage"
+              width="400"
+              height="304"
+              loading="lazy"
+            />
+          </div>
+          <div class="ba__card">
+            <img
+              src="img/salon.jpg"
+              alt="Salon après nettoyage"
+              width="392"
+              height="299"
+              loading="lazy"
+            />
+            <span class="ba__label">Résultat final</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Testimonials ─────────────────────────────────────────────────────── -->
+    <section class="section section--alt" id="temoignages">
+      <div class="container">
+        <h2 class="section-heading">Ce que disent nos clients</h2>
+        <p class="section-sub">
+          La satisfaction de nos clients est notre plus grande fierté.
+        </p>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="stars" role="img" aria-label="5 étoiles sur 5">★★★★★</div>
+            <p>
+              Ma maison était tellement propre et bien rangée ! Je n'avais
+              jamais vu un tel résultat. Je recommande RaissaFL à tous mes amis.
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">S</div>
+              <div>
+                <strong>Sophie M.</strong>
+                <span>Cliente résidentielle</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars" role="img" aria-label="5 étoiles sur 5">★★★★★</div>
+            <p>
+              Service professionnel, ponctuel et très attentionné aux détails.
+              Mon bureau n'a jamais été aussi propre. Je renouvelle le contrat
+              sans hésitation.
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">M</div>
+              <div>
+                <strong>Marc T.</strong>
+                <span>Propriétaire d'entreprise</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars" role="img" aria-label="5 étoiles sur 5">★★★★★</div>
+            <p>
+              Le nettoyage post-déménagement était parfait. L'appartement
+              brillait de propreté. Merci à toute l'équipe pour votre
+              professionnalisme et votre rapidité.
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">A</div>
+              <div>
+                <strong>Amina L.</strong>
+                <span>Cliente déménagement</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ──────────────────────────────────────────────────────────── -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact__inner">
+          <div>
+            <h2>Prêt à avoir un espace impeccable ?</h2>
+            <p>
+              Obtenez votre devis gratuit en quelques minutes. Nous vous
+              répondons rapidement par téléphone, courriel ou WhatsApp.
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-method">
+                <div class="contact-method-icon" aria-hidden="true">📞</div>
+                <div class="contact-method-text">
+                  <strong>Téléphone</strong>
+                  <a href="tel:+14383795528">438 379-5528</a><br />
+                  <a href="tel:+14388806717">438 880-6717</a>
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon" aria-hidden="true">📧</div>
+                <div class="contact-method-text">
+                  <strong>Courriel</strong>
+                  <a href="mailto:emraissafl@gmail.com">emraissafl@gmail.com</a>
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon" aria-hidden="true">💬</div>
+                <div class="contact-method-text">
+                  <strong>WhatsApp</strong>
+                  <a
+                    href="https://wa.me/14383795528"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Écrire sur WhatsApp</a>
+                  >
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon" aria-hidden="true">📍</div>
+                <div class="contact-method-text">
+                  <strong>Zone desservie</strong>
+                  <span>Île de Montréal · Rive-Sud · Rive-Nord</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>Demande de devis gratuit</h3>
+            <form
+              action="mailto:emraissafl@gmail.com"
+              method="GET"
+              enctype="text/plain"
+            >
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="prenom">Prénom</label>
+                  <input
+                    type="text"
+                    id="prenom"
+                    name="prenom"
+                    placeholder="Marie"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nom">Nom</label>
+                  <input
+                    type="text"
+                    id="nom"
+                    name="nom"
+                    placeholder="Tremblay"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="telephone">Téléphone</label>
+                <input
+                  type="tel"
+                  id="telephone"
+                  name="telephone"
+                  placeholder="514 000-0000"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="service">Service désiré</label>
+                <select id="service" name="service" required>
+                  <option value="">Choisir un service…</option>
+                  <option>Grand ménage</option>
+                  <option>Entretien régulier</option>
+                  <option>Pré / post-déménagement</option>
+                  <option>Espace commercial</option>
+                  <option>Post-rénovation</option>
+                  <option>Nettoyage ponctuel</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="body"
+                  placeholder="Décrivez votre espace, vos besoins, vos disponibilités…"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-submit">
+                Envoyer ma demande →
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </main>
+    <!-- ── Footer ───────────────────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__inner">
+          <div class="footer__brand">
+            <div class="footer__brand-logo">
+              <img
+                src="img/logo.jpg"
+                alt="Logo RaissaFL"
+                width="40"
+                height="40"
+                loading="lazy"
+              />
+              <div class="footer__brand-name">
+                Entretien Ménager<br />RaissaFL
+              </div>
+            </div>
+            <p>
+              Services d'entretien ménager résidentiel et commercial de qualité
+              dans le grand Montréal.
+            </p>
+            <div class="footer__socials">
+              <a
+                class="footer__social"
+                href="https://www.facebook.com/profile.php?id=100063645755481"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                >f</a
+              >
+              <a
+                class="footer__social"
+                href="https://wa.me/14383795528"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                >W</a
+              >
+              <a
+                class="footer__social"
+                href="mailto:emraissafl@gmail.com"
+                aria-label="Courriel"
+                >@</a
+              >
+            </div>
+          </div>
+
+          <div class="footer__col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:+14383795528">438 379-5528</a></li>
+              <li><a href="tel:+14388806717">438 880-6717</a></li>
+              <li>
+                <a href="mailto:emraissafl@gmail.com">emraissafl@gmail.com</a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/14383795528"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >WhatsApp</a>
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span>© 2024 Entretien Ménager RaissaFL. Tous droits réservés.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      hamburger.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+        hamburger.setAttribute("aria-expanded", isOpen);
+      });
+      // Close mobile menu on link click
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          hamburger.setAttribute("aria-expanded", "false");
+        });
+      });
+    </script>
+  </body>
+</html>
