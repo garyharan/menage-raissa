@@ -579,11 +579,12 @@
         color: var(--white);
         padding: 96px 0;
       }
+      /* Single column since the quote form was removed — the header text is
+         centered and the contact methods spread across the full width. */
       .contact__inner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: start;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
       }
       .contact h2 {
         font-size: clamp(1.75rem, 4vw, 2.5rem);
@@ -595,10 +596,12 @@
         font-size: 1rem;
       }
       .contact-methods {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        margin-top: 36px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 48px;
+        max-width: 760px;
+        margin: 48px auto 0;
+        text-align: left;
       }
       .contact-method {
         display: flex;
@@ -626,79 +629,6 @@
         color: var(--accent);
         font-size: 0.9rem;
       }
-      .contact-form {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--radius-lg);
-        padding: 40px;
-        backdrop-filter: blur(8px);
-      }
-      .contact-form h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin-bottom: 24px;
-      }
-      .form-group {
-        margin-bottom: 18px;
-      }
-      .form-group label {
-        display: block;
-        font-size: 0.85rem;
-        font-weight: 500;
-        margin-bottom: 6px;
-        color: rgba(255, 255, 255, 0.8);
-      }
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
-        width: 100%;
-        padding: 12px 16px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: var(--radius-sm);
-        color: var(--white);
-        font-size: 0.95rem;
-        font-family: inherit;
-        transition: border-color var(--transition);
-        outline: none;
-      }
-      .form-group input::placeholder,
-      .form-group textarea::placeholder {
-        color: rgba(255, 255, 255, 0.4);
-      }
-      .form-group input:focus,
-      .form-group select:focus,
-      .form-group textarea:focus {
-        border-color: var(--accent);
-      }
-      .form-group select option {
-        background: var(--purple-dark);
-      }
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-      .form-group textarea {
-        resize: vertical;
-        min-height: 100px;
-      }
-      .btn-submit {
-        width: 100%;
-        padding: 14px;
-        background: var(--white);
-        color: var(--purple-mid);
-        border: none;
-        border-radius: var(--radius-sm);
-        font-size: 1rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: var(--transition);
-      }
-      .btn-submit:hover {
-        background: var(--purple-light);
-      }
-
       /* ── Footer ───────────────────────────────────────────────────────── */
       .footer {
         background: #0d0630;
@@ -818,8 +748,7 @@
 
       @media (max-width: 900px) {
         .hero__inner,
-        .about__inner,
-        .contact__inner {
+        .about__inner {
           grid-template-columns: 1fr;
           gap: 40px;
         }
@@ -852,9 +781,6 @@
         .section {
           padding: 64px 0;
         }
-        .form-row {
-          grid-template-columns: 1fr;
-        }
         .footer__inner {
           grid-template-columns: 1fr;
           gap: 32px;
@@ -863,11 +789,11 @@
           flex-direction: column;
           text-align: center;
         }
+        .contact-methods {
+          grid-template-columns: 1fr;
+        }
         .hero {
           padding: 64px 0 56px;
-        }
-        .contact__inner {
-          gap: 48px;
         }
       }
     </style>
@@ -911,9 +837,6 @@
           <a href="#contact">Contact</a>
           <a href="tel:+14383795528" style="color: #673de6; font-weight: 600"
             ><span aria-hidden="true">📞</span> 438 379-5528</a
-          >
-          <a href="tel:+14388806717" style="color: #673de6; font-weight: 600"
-            ><span aria-hidden="true">📞</span> 438 880-6717</a
           >
         </div>
       </nav>
@@ -1199,8 +1122,7 @@
                 <div class="contact-method-icon" aria-hidden="true">📞</div>
                 <div class="contact-method-text">
                   <strong>Téléphone</strong>
-                  <a href="tel:+14383795528">438 379-5528</a><br />
-                  <a href="tel:+14388806717">438 880-6717</a>
+                  <a href="tel:+14383795528">438 379-5528</a>
                 </div>
               </div>
               <div class="contact-method">
@@ -1218,7 +1140,7 @@
                     href="https://wa.me/14383795528"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >Écrire sur WhatsApp</a>
+                    >Écrire sur WhatsApp</a
                   >
                 </div>
               </div>
@@ -1230,71 +1152,6 @@
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="contact-form">
-            <h3>Demande de devis gratuit</h3>
-            <form
-              action="mailto:emraissafl@gmail.com"
-              method="GET"
-              enctype="text/plain"
-            >
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="prenom">Prénom</label>
-                  <input
-                    type="text"
-                    id="prenom"
-                    name="prenom"
-                    placeholder="Marie"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="nom">Nom</label>
-                  <input
-                    type="text"
-                    id="nom"
-                    name="nom"
-                    placeholder="Tremblay"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="telephone">Téléphone</label>
-                <input
-                  type="tel"
-                  id="telephone"
-                  name="telephone"
-                  placeholder="514 000-0000"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="service">Service désiré</label>
-                <select id="service" name="service" required>
-                  <option value="">Choisir un service…</option>
-                  <option>Grand ménage</option>
-                  <option>Entretien régulier</option>
-                  <option>Pré / post-déménagement</option>
-                  <option>Espace commercial</option>
-                  <option>Post-rénovation</option>
-                  <option>Nettoyage ponctuel</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea
-                  id="message"
-                  name="body"
-                  placeholder="Décrivez votre espace, vos besoins, vos disponibilités…"
-                ></textarea>
-              </div>
-              <button type="submit" class="btn-submit">
-                Envoyer ma demande →
-              </button>
-            </form>
           </div>
         </div>
       </div>
@@ -1352,7 +1209,6 @@
             <h4>Contact</h4>
             <ul>
               <li><a href="tel:+14383795528">438 379-5528</a></li>
-              <li><a href="tel:+14388806717">438 880-6717</a></li>
               <li>
                 <a href="mailto:emraissafl@gmail.com">emraissafl@gmail.com</a>
               </li>
@@ -1361,7 +1217,7 @@
                   href="https://wa.me/14383795528"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >WhatsApp</a>
+                  >WhatsApp</a
                 >
               </li>
             </ul>
